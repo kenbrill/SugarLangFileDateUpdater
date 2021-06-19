@@ -9,11 +9,13 @@ foreach ($rii as $file) {
     }
     $fileName = $file->getFilename();
     $pathName = $file->getPathname();
-    if ($fileName === 'en_us.lang.php') {
+    preg_match('/^[a-z]{2}_[a-z]{2}.lang.php$/i', $fileName, $matches);
+    if (!empty($matches)) {
         echo "touched {$pathName}<br>";
         touch($pathName);
     }
-    if (substr($fileName, 0, 8) === 'en_us.sugar_') {
+    preg_match('/^[a-z]{2}_[a-z]{2}.sugar_.+$/i', $fileName, $matches);
+    if (!empty($matches)) {
         echo "touched {$pathName}<br>";
         touch($pathName);
     }
